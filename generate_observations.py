@@ -4,6 +4,7 @@
 本次伪造的数据集均采用长度为10的senz作为观测序列"""
 
 import random
+import json
 
 __all__ = ['generate_studying_senz_list', 'generate_working_senz_list', 'generate_shopping_senz_list', 'generate_dining_senz_list']
 
@@ -206,7 +207,7 @@ def _generate_studying_senz():
     return {'location':location, 'sound':sound, 'motion':motion}
 
 
-def generate_dining_senz_list(list_len=10, list_count=1):
+def generate_dining_senz_list(list_len=10, list_count=1, store_file=''):
     """生成dining senz list, 长度为list_len, 个数为list_count
     """
     result = []
@@ -216,10 +217,14 @@ def generate_dining_senz_list(list_len=10, list_count=1):
             senz_list.append(_generate_dining_senz())
         result.append(senz_list)
 
+    if store_file:
+        with open(store_file, 'w') as fw:
+            json.dump(result, fw)
+
     return result
 
 
-def generate_shopping_senz_list(list_len=10, list_count=1):
+def generate_shopping_senz_list(list_len=10, list_count=1, store_file=''):
     """生成shopping senz list, 长度为list_len, 个数为list_count
     """
     result = []
@@ -229,10 +234,14 @@ def generate_shopping_senz_list(list_len=10, list_count=1):
             senz_list.append(_generate_shopping_senz())
         result.append(senz_list)
 
+    if store_file:
+        with open(store_file, 'w') as fw:
+            json.dump(result, fw)
+
     return result
 
 
-def generate_working_senz_list(list_len=10, list_count=1):
+def generate_working_senz_list(list_len=10, list_count=1, store_file=''):
     """生成working senz list, 长度为list_len, 个数为list_count
     """
     result = []
@@ -242,10 +251,14 @@ def generate_working_senz_list(list_len=10, list_count=1):
             senz_list.append(_generate_working_senz())
         result.append(senz_list)
 
+    if store_file:
+        with open(store_file, 'w') as fw:
+            json.dump(result, fw)
+
     return result
 
 
-def generate_studying_senz_list(list_len=10, list_count=1):
+def generate_studying_senz_list(list_len=10, list_count=1, store_file=''):
     """生成studying senz list, 长度为list_len, 个数为list_count
     """
     result = []
@@ -254,5 +267,9 @@ def generate_studying_senz_list(list_len=10, list_count=1):
         for j in xrange(list_len):
             senz_list.append(_generate_studying_senz())
         result.append(senz_list)
+
+    if store_file:
+        with open(store_file, 'w') as fw:
+            json.dump(result, fw)
 
     return result
