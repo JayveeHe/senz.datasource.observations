@@ -284,9 +284,9 @@ def _do_senz_map(senz):
     motion_len = len(motion_type)
     sound_len = len(sound_type)
 
-    motion_index = motion_type.index(snez['motion'])
-    sound_index = sound_type.index(snez['sound'])
-    location_index = location_type.index(snez['location'])
+    motion_index = motion_type.index(senz['motion'])
+    sound_index = sound_type.index(senz['sound'])
+    location_index = location_type.index(senz['location'])
 
     result = motion_index + sound_index * motion_len + location_index * (motion_len + sound_len)
 
@@ -308,9 +308,8 @@ def map_senz(senz_list):
     if isinstance(senz_list, dict):
         result.append(_do_senz_map(senz_list))
     elif isinstance(senz_list, list):
-        result = [_do_senz_map(senz) for senz in snez_list]
+        result = [_do_senz_map(senz) for senz in senz_list]
     else:
         raise TypeError("Obj of type %s not supported" % (type(senz_list)))
 
     return result 
-
