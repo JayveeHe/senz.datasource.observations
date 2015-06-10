@@ -6,7 +6,9 @@
 import random
 import json
 
-__all__ = ['generate_studying_senz_list', 'generate_working_senz_list', 'generate_shopping_senz_list', 'generate_dining_senz_list']
+__all__ = ['generate_studying_senz_list', 'generate_working_senz_list',
+           'generate_shopping_senz_list', 'generate_dining_senz_list',
+           'map_senz']
 
 motion_type = ("sitting", "walking", "running", "riding", "driving")
 
@@ -273,3 +275,42 @@ def generate_studying_senz_list(list_len=10, list_count=1, store_file=''):
             json.dump(result, fw)
 
     return result
+
+
+def _do_senz_map(senz):
+    """把一个senz映射为一个int
+    """
+    result = 0
+    motion_len = len(motion_type)
+    sound_len = len(sound_type)
+
+    motion_index = motion_type.index(snez['motion'])
+    sound_index = sound_type.index(snez['sound'])
+    location_index = location_type.index(snez['location'])
+
+    result = motion_index + sound_index * motion_len + location_index * (motion_len + sound_len)
+
+    return result
+
+
+def map_senz(senz_list):
+    """把一个senz_list映射为一个int_list
+
+    Parameters
+    ----------
+    senz_list: dict or list of dict
+
+    Returns
+    -------
+    maped_senz_list: int or list of int
+    """
+    result = []
+    if isinstance(senz_list, dict):
+        result.append(_do_senz_map(senz_list))
+    elif isinstance(senz_list, list):
+        result = [_do_senz_map(senz) for senz in snez_list]
+    else:
+        raise TypeError("Obj of type %s not supported" % (type(senz_list)))
+
+    return result 
+
