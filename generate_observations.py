@@ -5,6 +5,8 @@
 
 import random
 
+__all__ = ['generate_studying_senz_list', 'generate_working_senz_list', 'generate_shopping_senz_list', 'generate_dining_senz_list']
+
 motion_type = ("sitting", "walking", "running", "riding", "driving")
 
 # sound_level1_type  = ("quiet", "lowish", "noisy")
@@ -202,3 +204,55 @@ def _generate_studying_senz():
         sound = random.choice(studying_sound_type)
 
     return {'location':location, 'sound':sound, 'motion':motion}
+
+
+def generate_dining_senz_list(list_len=10, list_count=1):
+    """生成dining senz list, 长度为list_len, 个数为list_count
+    """
+    result = []
+    for i in xrange(list_count):
+        senz_list = []
+        for j in xrange(list_len):
+            senz_list.append(_generate_dining_senz())
+        result.append(senz_list)
+
+    return result
+
+
+def generate_shopping_senz_list(list_len=10, list_count=1):
+    """生成shopping senz list, 长度为list_len, 个数为list_count
+    """
+    result = []
+    for i in xrange(list_count):
+        senz_list = []
+        for j in xrange(list_len):
+            senz_list.append(_generate_shopping_senz())
+        result.append(senz_list)
+
+    return result
+
+
+def generate_working_senz_list(list_len=10, list_count=1):
+    """生成working senz list, 长度为list_len, 个数为list_count
+    """
+    result = []
+    for i in xrange(list_count):
+        senz_list = []
+        for j in xrange(list_len):
+            senz_list.append(_generate_working_senz())
+        result.append(senz_list)
+
+    return result
+
+
+def generate_studying_senz_list(list_len=10, list_count=1):
+    """生成studying senz list, 长度为list_len, 个数为list_count
+    """
+    result = []
+    for i in xrange(list_count):
+        senz_list = []
+        for j in xrange(list_len):
+            senz_list.append(_generate_studying_senz())
+        result.append(senz_list)
+
+    return result
